@@ -8,6 +8,9 @@
     "start": "serve -s build",
     "build": "parcel build src/index.html --dist-dir build"
   },
+  "engines": {
+    "node": "20.11.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
