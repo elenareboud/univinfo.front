@@ -1,5 +1,5 @@
 import './style.scss'; 
-import up_icone from "../../images/up.png"
+import up_icone from "../../images/up.png";
 
 
 export function SkipLinkFooter(){
