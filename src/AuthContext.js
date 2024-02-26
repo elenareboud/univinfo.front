@@ -1,4 +1,3 @@
-////dans un fichier AuthContext.js que j'ai créer à la racine du front
 import { createContext, useContext, useState, useEffect } from 'react';
 import jwt from 'jsonwebtoken';
 const AuthContext = createContext(); // Ici je crée le contexte react pour partager des données entre les composants de l'appli

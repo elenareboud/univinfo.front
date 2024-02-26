@@ -16,7 +16,7 @@ export function Connexion() {
         const name = target.name;
         const value = target.value;
 
-        // fonction qui isert nos donné dans notre objet créé plus haut(boilerplate)
+        // fonction qui insert nos données dans notre objet créé plus haut(boilerplate)
         setFormData((prevFormData) => {
             return {
                 ...prevFormData,
@@ -34,7 +34,7 @@ export function Connexion() {
         console.log(newObject);
 
         try {
-            const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/login', {
+            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,10 +51,10 @@ export function Connexion() {
 
             // Pour enregistrer le token dans le LocalStorage après la connexion
             localStorage.setItem("token", data.token);
-            console.log(data.token);
+            
 
             alert(data.message);
-            window.location.replace("http://localhost:1234/home/");
+            //window.location.replace("http://localhost:1234/home/");
 
 
         } catch (error) {

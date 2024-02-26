@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Footer } from '../../../Footer';
-import { DeleteButton } from "../../../DeleteButton";  
 
 export function ContactDetails() { 
     const params = useParams()//permet de récupéré notre id de l'url 
@@ -15,7 +14,7 @@ export function ContactDetails() {
     const doSearch = async () => {
         try {
             setcontactData([]);
-            const adresse = "http://julienguilbaud-server.eddi.cloud:8080/api/contact/details/" + params.id
+            const adresse = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/details/" + params.id
             const response = await fetch(adresse);
             const data = await response.json();
             setcontactData(data);

@@ -1,4 +1,6 @@
 import { AuthProvider } from "../../AuthContext";
+import * as React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Connexion } from '../pages/Connexion';
 import { Home } from '../pages/Home';
@@ -13,6 +15,7 @@ import { CampaignHome } from '../pages/Campaign/CampaignHome';
 import { CampaignCreate } from '../pages/Campaign/CampaignCreate';
 import { CampaignDetails } from '../pages/Campaign/CampaignDetails';
 import { CampaignUpdate } from '../pages/Campaign/CampaignUpdate';
+
 import { ExchangeHome } from '../pages/Exchange/ExchangeHome';
 import { ExchangeCreate } from '../pages/Exchange/ExchangeCreate';
 import { ExchangeDetails } from '../pages/Exchange/ExchangeDetails';

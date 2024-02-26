@@ -22,7 +22,7 @@ export function CampaignHome() {
         setSearchResult([]);
 
         try {
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/campaigns/" + searchValue;
+            const address ="https://univ-back-fa6cebfcadb3.herokuapp.com/api/campaign/" + searchValue;
             const response = await fetch(address);
             const data = await response.json();
             setSearchResult(data);

@@ -4,15 +4,17 @@ import { Footer } from "../../../Footer";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 export function UserUpdate() {
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm, setNewForm] = useState({})
     const params = useParams()
     const [groupeData, setGroupeData] = useState([]);
     const [userData, setuserData] = useState({});
     const [formData, setFormData] = useState({});
-    //on fait une recherche pour le maping de fonction
+    //on fait une recherche pour la maping de fonction
     const doSearchForGroup = async () => {
         try {
             setGroupeData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/group/"
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/group/"
             const response = await fetch(address);
             const data = await response.json();
             setGroupeData(data);
@@ -26,7 +28,7 @@ export function UserUpdate() {
     const doSearchForUser = async () => {
         try {
             setuserData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/user/" + params.userid
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/user/" + params.userid
             const response = await fetch(address);
             const data = await response.json();
             setuserData(data);
@@ -73,11 +75,8 @@ export function UserUpdate() {
         };
 
 
-        console.log(newObject);
-
-
         try {
-            const response = await fetch("http://julienguilbaud-server.eddi.cloud:8080/api/user/update/" + params.userid, {
+            const response = await fetch("https://univ-back-fa6cebfcadb3.herokuapp.com/api/user/update/" + params.userid, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,13 +88,14 @@ export function UserUpdate() {
                 const errorResponse = await response.json();
                 throw new Error(errorResponse.error);
             }
-
+            setNewForm({})
             const data = await response.json();
-
-            alert("data.message");
-
-            window.location.replace(`http://localhost:1234/administrateur`);
-
+            setNewForm(data)
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
+        
         } catch (error) {
             const formMessages = document.getElementById('form-messages');
             formMessages.classList.add("error-message")

@@ -10,10 +10,9 @@ export function Admin() {
 
   const dosearch = async () => {
     try {
-      const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/";
+      const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/users/details";
       const response = await fetch(address);
       const data = await response.json();
-      console.log(data);
       setUsers(data);
     } catch (error) {
       console.error(error);
@@ -43,7 +42,7 @@ export function Admin() {
                 <li className="item-admin"><strong>Email:</strong> {user.email}</li>
                 <li className="item-admin"><strong>Fonction:</strong> {user.Groupe.fonction}</li>
                 <li className="item-admin">
-                <LinkButton link={"http://localhost:1234/userUpdate/"+user.id} value={"Modifier"}  />
+                <LinkButton link={"/userUpdate/"+user.id} value={"Modifier"}  />
                   <strong className="item-admin">Autorisation:</strong>
                   <ul className="card-admin">
                     <li className="item-admin">Créer: {getYesOrNo(user.Groupe.Authorisation.make)}</li>
@@ -55,8 +54,8 @@ export function Admin() {
           </article>
           ))}
           </section>
-          <LinkButton link={"http://localhost:1234/userCreate"} value={"Créer un utilisateur"}  />
-          <LinkButton link={"http://localhost:1234/groupeCreate"} value={"Créer un groupe"}  />
+          <LinkButton link={"/userCreate"}  value={"Créer un utilisateur"}  />
+          <LinkButton link={"/groupeCreate"} value={"Créer un groupe"}  />
       </Main>
       <Footer />
     </>

@@ -13,7 +13,7 @@ export function ExchangeDetails() {
     const doSearch = async () => {
         try {
             setexchangeData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/exchanges/details/" + params.contactid
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/exchanges/details/" + params.contactid
             const response = await fetch(address);
             const data = await response.json();
             setexchangeData(data);

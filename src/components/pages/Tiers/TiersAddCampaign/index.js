@@ -6,6 +6,8 @@ import { Main } from "../../../Main"
 
 
 export function TiersAddCampaigns() {
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm, setNewForm] = useState({})
     const [CampaignData, setCampaignData] = useState([]);
     const params = useParams()//permet de récupéré notre id de l'url
     //on fabrique un objet vide avec nos attributs de table (a configurer)
@@ -16,7 +18,7 @@ export function TiersAddCampaigns() {
     const doSearch = async () => {
         try {
             setCampaignData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/campaigns/"
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/campaigns/"
             const response = await fetch(address);
             const data = await response.json();
             setCampaignData(data);
@@ -52,7 +54,7 @@ export function TiersAddCampaigns() {
         };
         
         try {
-            const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/tierhascampaign/', {
+            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/tierhascampaign/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,12 +66,15 @@ export function TiersAddCampaigns() {
                 const errorResponse = await response.json();
                 throw new Error(errorResponse.error);
             }
-
+            setNewForm({})
             const data = await response.json();
-
-            alert(data.message);
-
-            window.location.replace(`http://localhost:1234/tiersDetails/` + params.tierid);
+            setNewForm(data)
+            console.log(data);
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
+            
         } catch (error) {
             const formMessages = document.getElementById('form-messages');
             formMessages.classList.add("error-message")

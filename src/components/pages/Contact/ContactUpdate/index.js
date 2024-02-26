@@ -15,7 +15,7 @@ export function ContactUpdate() {
     const doSearch = async () => {
         try {
             setContactData({});
-            const adresse = "http://julienguilbaud-server.eddi.cloud:8080/api/contact/details/" + params.contactId;
+            const adresse = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/details/" + params.contactId;
             const response = await fetch(adresse);
             const data = await response.json();
             setContactData(data);
@@ -23,7 +23,7 @@ export function ContactUpdate() {
 
         } catch (error) {
             console.error(error);
-            alert('Erreur lors de la récupérationd des résultats');
+            alert('Erreur lors de la récupération des résultats');
         }
     };
     useEffect(() => {
@@ -81,7 +81,7 @@ export function ContactUpdate() {
         
 
         try {
-            const response = await fetch (`http://julienguilbaud-server.eddi.cloud:8080/api/contact/update/`+ params.contactId, {
+            const response = await fetch (`https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/update/`+ params.contactId, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -94,12 +94,16 @@ export function ContactUpdate() {
                 throw new Error(errorResponse.error);
                 
             }
-    
+            setNewForm({})
             const data = await response.json();
+            console.log(data);
+            setNewForm(data)
+            const formMessages = document.getElementById('form-messages');
             
-            alert('Contact a été modifié');
-    
-            window.location.replace(`http://localhost:1234/contactDetails/` + params.contactId);
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
+            
         } catch (error) {
             
             const formMessages = document.getElementById('form-messages');
@@ -111,10 +115,9 @@ export function ContactUpdate() {
 
     const doDelete = async () => {
         try {
-            await fetch(`http://julienguilbaud-server.eddi.cloud:8080/api/contact/delete/` + params.contactId, {method:'DELETE'});
+            await fetch(`https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/delete/` + params.contactId, {method:'DELETE'});
             alert('Contact a été supprimé');
-            window.location.replace(`http://localhost:1234/tiersHome`)
-        }
+            }
         catch (error) {
             console.error(error); 
         }

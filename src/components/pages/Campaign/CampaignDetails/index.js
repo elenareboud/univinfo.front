@@ -16,7 +16,7 @@ export function CampaignDetails() {
         try {
 
             setCampaignData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/campaigns/details/" + params.id;
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/campaigns/details/" + params.id;
             const response = await fetch(address);
             const data = await response.json();
             setCampaignData(data);
@@ -65,7 +65,7 @@ export function CampaignDetails() {
                             <ul className='details-card' >
                                 {campaignData.TierHasCampaigns.map((element, index) => (
                                     <li className='details-item' key={index} >
-                                          {element.Tier.social_reason}
+                                        {element.Tier.social_reason}
                                     </li>
                                 ))}
                             </ul>
@@ -76,13 +76,12 @@ export function CampaignDetails() {
                         <h3 className='details-box-title'>Message :</h3>
                         
                             <ul className="details-card">
-                               
-                                   <li className="details-item" >
+
+                                <li className="details-item" >
                                         { campaignData.message || "aucun message"}
-                                   </li> 
+                                </li> 
                             
-                            </ul>
-                         
+                            </ul>  
 
                     </article>
                     <article>

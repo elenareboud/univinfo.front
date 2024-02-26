@@ -8,6 +8,8 @@ import { Main } from "../../../Main"
 
 
 export function ContactAddTiers() {
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm, setNewForm] = useState({})
     const [TierData, setTierData] = useState([]);
     const params = useParams()//permet de récupéré notre id de l'url
     //on fabrique un objet vide avec nos attributs de table (a configurer)
@@ -18,7 +20,7 @@ export function ContactAddTiers() {
     const doSearch = async () => {
         try {
             setTierData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/tiers/"
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/tiers/"
             const response = await fetch(address);
             const data = await response.json();
             setTierData(data);
@@ -54,8 +56,8 @@ export function ContactAddTiers() {
         };
         console.log(newObject);
 
-         try {
-            const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/bind/create', {
+        try {
+            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/bind/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,16 +72,18 @@ export function ContactAddTiers() {
             }
 
             const data = await response.json();
-
-            alert(data.message);
-
-            window.location.replace(`http://localhost:1234/contactDetails/` + params.contactId);
+            console.log(data);
+            setNewForm(data)
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
+                
         } catch (error) {
             
             const formMessages = document.getElementById('form-messages');
             formMessages.classList.add("error-message")
             formMessages.innerText = error;
-
         }
     };
 
@@ -104,12 +108,11 @@ return (
                             <option>selectioner</option>
                             {TierData.map((element, index) => (
                                 <option key={index} value={element.id} >
-                                     {element.judicial_status} {element.social_reason} {element.address} {element.country}
+                                    {element.judicial_status} {element.social_reason} {element.address} {element.country}
                                 </option>
                             ))}
 
                         </select>
-
                     </label>
 
                     <button type="submit" className="formSearch-item-button">Ajouter</button>

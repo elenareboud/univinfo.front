@@ -5,6 +5,8 @@ import { Main } from "../../../Main";
 import { Footer } from "../../../Footer";
 
 export function UserCreate() {
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm, setNewForm] = useState({})
     const [groupeData, setGroupeData] = useState([]);
 
     
@@ -20,7 +22,7 @@ export function UserCreate() {
     const doSearch = async () => {
         try {
             setGroupeData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/group/" 
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/group/" 
             const response = await fetch(address);
             const data = await response.json();
             setGroupeData(data);
@@ -30,10 +32,6 @@ export function UserCreate() {
             alert('Erreur lors de la récupération des résultats');
         }
     };
-
-
-
-
 
     // fonction qui récupère les entrées de nos inputs (boilerplate)
     const handleChange = (event) => {
@@ -60,7 +58,7 @@ export function UserCreate() {
 
 
         try {
-            const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/user/create', {
+            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/user/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -72,12 +70,14 @@ export function UserCreate() {
                 const errorResponse = await response.json();
                 throw new Error(errorResponse.error);
             }
-
+            setNewForm({})
             const data = await response.json();
-
-            alert(data.message);
-
-            window.location.replace(`http://localhost:1234/administrateur` );
+            setNewForm(data)
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
+            
 
         } catch (error) {
             const formMessages = document.getElementById('form-messages');

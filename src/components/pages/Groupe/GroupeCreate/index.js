@@ -5,9 +5,8 @@ import { Footer } from "../../../Footer";
 import { useParams } from "react-router-dom";
 
 export function GroupeCreate() {
-
-
-    const params = useParams();
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm, setNewForm] = useState({})
     const [formData, setFormdata] = useState({
         fonction: '',
         make: false,
@@ -39,10 +38,8 @@ export function GroupeCreate() {
             edit: formData.edit,
             suppress: formData.suppress,
         };
-        console.log(newObject);
-
                 try {
-                    const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/group/creategroup', {
+                    const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/group/creategroup', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -54,22 +51,20 @@ export function GroupeCreate() {
                         const errorResponse = await response.json();
                         throw new Error(errorResponse.error);
                     }
-        
+                    setNewForm({})
                     const data = await response.json();
-        
-                    alert(data.message);
-        
-                    // Remplacez l'URL de redirection par celle souhaitée
-                    window.location.replace("http://localhost:1234/administrateur");
-        
+                    setNewForm(data)
+                    const formMessages = document.getElementById('form-messages');
+                    formMessages.classList.toggle("good-message")
+                    formMessages.innerText = data.message;
+                    setFormAlert(true)      
+                        
                 } catch (error) {
                     const formMessages = document.getElementById('form-messages');
                     formMessages.classList.add("error-message")
                     formMessages.innerText = error;
                 }
     };
-
-
 
     return (
         <>

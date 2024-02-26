@@ -8,6 +8,8 @@ import { Main } from "../../../Main"
 
 
 export function TiersAddContact() {
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm, setNewForm] = useState({})
     const [ContactData, setContactData] = useState([]);
     const params = useParams()//permet de récupéré notre id de l'url
     //on fabrique un objet vide avec nos attributs de table (a configurer)
@@ -18,7 +20,7 @@ export function TiersAddContact() {
     const doSearch = async () => {
         try {
             setContactData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/contacts/all"
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/contacts/all"
             const response = await fetch(address);
             const data = await response.json();
             setContactData(data);
@@ -55,7 +57,7 @@ export function TiersAddContact() {
         console.log(newObject);
 
         try {
-            const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/bind/create', {
+            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/bind/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,19 +69,21 @@ export function TiersAddContact() {
                 const errorResponse = await response.json();
                 throw new Error(errorResponse.error);
             }
-
+            setNewForm({})
             const data = await response.json();
-
-            alert(data.message);
-
-            window.location.replace(`http://localhost:1234/tiersDetails/` + params.tierid);
+            setNewForm(data)
+            console.log(data);
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
+            
         } catch (error) {
             const formMessages = document.getElementById('form-messages');
             formMessages.classList.add("error-message")
             formMessages.innerText = error;
         }
     };
-
 
     useEffect(() => {
         doSearch();

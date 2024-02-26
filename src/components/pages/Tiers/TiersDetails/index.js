@@ -15,12 +15,11 @@ export function TiersDetails() {
     const doSearch = async () => {
         try {
             setTiersData([]);
-            const adresse = "http://julienguilbaud-server.eddi.cloud:8080/api/tier/details/" + params.id;
+            const adresse = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/tier/details/" + params.id;
             const response = await fetch(adresse);
             const data = await response.json();
             setTiersData(data);
-            console.log(data);
-
+            
         } catch (error) {
             console.error(error);
             alert('Erreur lors de la récupération des résultats');

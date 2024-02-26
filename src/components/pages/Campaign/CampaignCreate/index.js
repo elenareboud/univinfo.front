@@ -4,6 +4,8 @@ import { Header } from "../../../Header";
 import { Main } from "../../../Main";
 
 export function CampaignCreate() {
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm,setNewForm]=useState({})
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -30,7 +32,7 @@ export function CampaignCreate() {
 
 
         try {
-            const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/campaign/create', {
+            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/campaign/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,11 +45,14 @@ export function CampaignCreate() {
                 throw new Error(errorResponse.error);
             }
 
+            setNewForm({})
             const data = await response.json();
-
-            alert(data.message);
-
-            window.location.replace(`http://localhost:1234/campaignDetails/` + data.campaign.id);
+            setNewForm(data)
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = newForm.message;
+            setFormAlert(true)
+            
         } catch (error) {
             const formMessage = document.getElementById('form-messages');
             formMessage.classList.add("error-message");

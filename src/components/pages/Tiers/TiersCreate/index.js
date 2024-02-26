@@ -5,6 +5,8 @@ import { Main } from "../../../Main";
 
 
 export function TiersCreate() {
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm, setNewForm] = useState({})
     //on fabrique un objet vide avec nos attributs de table (a configurer)
     const [formData, setFormData] = useState({
         social_reason: '',
@@ -63,7 +65,7 @@ export function TiersCreate() {
         console.log(newObject);
 
         try {
-            const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/tier/create', {
+            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/tier/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,12 +77,15 @@ export function TiersCreate() {
                 const errorResponse = await response.json();
                 throw new Error(errorResponse.error);
             }
-
+            setNewForm({})
             const data = await response.json();
-
-            alert(data.message);
-
-            window.location.replace('http://localhost:1234/tiersDetails/'+data.tier.id);
+            setNewForm(data)
+            console.log(data);
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
+            
         } catch (error) {
             const formMessages = document.getElementById('form-messages');
             formMessages.classList.add("error-message")

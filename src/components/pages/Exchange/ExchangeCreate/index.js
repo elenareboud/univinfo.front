@@ -7,6 +7,8 @@ import { useAuth } from "../../../../AuthContext";
 
 
 export function ExchangeCreate() {
+    const [formAlert, setFormAlert] = useState(false)
+    const [newForm, setNewForm] = useState({})
     const [exchangeData, setexchangeData] = useState([]);
     const params = useParams()//permet de récupéré notre id de l'url
     const userName = useAuth();
@@ -20,7 +22,7 @@ export function ExchangeCreate() {
     const doSearch = async () => {
         try {
             setexchangeData([]);
-            const address = "http://julienguilbaud-server.eddi.cloud:8080/api/contact/" + params.contactid
+            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/" + params.contactid
             const response = await fetch(address);
             const data = await response.json();
             setexchangeData(data);
@@ -57,7 +59,7 @@ export function ExchangeCreate() {
         console.log(newObject);
 
         try {
-            const response = await fetch('http://julienguilbaud-server.eddi.cloud:8080/api/exchange/create', {
+            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/exchange/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,12 +71,13 @@ export function ExchangeCreate() {
                 const errorResponse = await response.json();
                 throw new Error(errorResponse.error);
             }
-
             const data = await response.json();
-
-            alert(data.message);
-
-            window.location.replace(`http://localhost:1234/exchangeDetails/` + params.contactid);
+            setNewForm(data)
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
+                
         } catch (error) {
             const formMessages = document.getElementById('form-messages');
             formMessages.classList.add("error-message")
