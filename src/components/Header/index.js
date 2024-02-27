@@ -18,9 +18,9 @@ export function Header() {
 
         const doDisconnect = async () => {
                 try {
-                        await localStorage.removeItem("token");
+                        localStorage.removeItem("token");
                         alert('Vous êtes bien déconnecté');
-                        window.location.replace(`http://localhost:1234/`)
+                        window.location.replace(`/`)
                 }
                 catch (error) {
                         console.error(error);
