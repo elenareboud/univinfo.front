@@ -9,7 +9,7 @@
     "build": "parcel build"
   },
   "engines": {
-    "node": "20.11.0"
+    "node": "18.x"
   },
   "keywords": [],
   "author": "",
