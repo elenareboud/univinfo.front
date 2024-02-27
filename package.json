@@ -4,8 +4,9 @@
   "description": "",
   "source": "src/index.html",
   "scripts": {
-    "start": "serve -s build",
-    "build": "parcel build src/index.html --dist-dir build"
+    "start": "rm -rf .parcel-cache dist && parcel",
+    "clear": "rm -rf .parcel-cache dist",
+    "build": "parcel build"
   },
   "engines": {
     "node": "20.11.0"
