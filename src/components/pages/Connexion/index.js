@@ -4,6 +4,8 @@ import { useState } from "react";
 
 
 export function Connexion() {
+    const [formAlert, setFormAlert] = useState(false)
+
     const [formData, setFormData] = useState({
         password: "",
         email: ""
@@ -51,11 +53,13 @@ export function Connexion() {
 
             // Pour enregistrer le token dans le LocalStorage après la connexion
             localStorage.setItem("token", data.token);
-            
-
-            alert(data.message);
+                    
             //window.location.replace("http://localhost:1234/home/");
 
+            const formMessages = document.getElementById('form-messages');
+            formMessages.classList.toggle("good-message")
+            formMessages.innerText = data.message;
+            setFormAlert(true)
 
         } catch (error) {
             const formMessages = document.getElementById('form-messages');
@@ -77,8 +81,11 @@ export function Connexion() {
                     <form onSubmit={handleSubmit} className="formInput-container">
                         <fieldset className="formInput-box">
                             <legend> formulaire de connexion </legend>
-                            <div aria-live="polite" id="form-messages" className=""></div>
+                            <div aria-live="polite" id="form-messages" className="">
+                            {formAlert && <Link to={"/home"}>Allez vers Accueil</Link>} 
+                            </div>
                             <label className="formInput-card">
+
                                 Email :
                                 <input required type="mail" name="email" value={formData.email} onChange={handleChange} className="formInput-item" />
                             </label>
@@ -91,9 +98,6 @@ export function Connexion() {
 
                         </fieldset>
                     </form>
-
-
-
 
                 </section>
             </main>
