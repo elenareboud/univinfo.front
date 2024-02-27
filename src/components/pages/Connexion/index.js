@@ -1,8 +1,6 @@
 import { LinkButton } from "../../LinkButton"
 import { useState } from "react";
 
-
-
 export function Connexion() {
     const [formAlert, setFormAlert] = useState(false)
 
@@ -33,8 +31,6 @@ export function Connexion() {
             password: formData.password,
             email: formData.email
         };
-        console.log(newObject);
-
         try {
             const response = await fetch('REACT_APP_API_URL/api/login', {
                 method: 'POST',
@@ -49,7 +45,7 @@ export function Connexion() {
                 throw new Error(errorResponse.error);
             }
 
-            const data = await response.json();
+            // const data = await response.json();
 
             // Pour enregistrer le token dans le LocalStorage après la connexion
             localStorage.setItem("token", data.token);
