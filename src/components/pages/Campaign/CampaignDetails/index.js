@@ -16,7 +16,7 @@ export function CampaignDetails() {
         try {
 
             setCampaignData([]);
-            const address = "REACT_APP_API_URL/api/campaigns/details/" + params.id;
+            const address = "/api/campaigns/details/" + params.id;
             const response = await fetch(address);
             const data = await response.json();
             setCampaignData(data);

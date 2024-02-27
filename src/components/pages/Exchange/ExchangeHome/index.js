@@ -21,7 +21,7 @@ export function ExchangeHome() {
         setSearchResult([]);
 
         try {
-            const address = "REACT_APP_API_URL/api/contacts/" + searchValue;
+            const address = "${process.env.REACT_APP_API_URL}/api/contacts/" + searchValue;
             const response = await fetch(address);
             const data = await response.json();
             setSearchResult(data);

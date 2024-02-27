@@ -32,7 +32,7 @@ export function CampaignCreate() {
 
 
         try {
-            const response = await fetch('REACT_APP_API_URL/api/campaign/create', {
+            const response = await fetch('${process.env.REACT_APP_API_URL}/api/campaign/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -4,9 +4,7 @@
   "description": "",
   "source": "src/index.html",
   "scripts": {
-    "start": "rm -rf .parcel-cache dist && parcel",
-    "clear": "rm -rf .parcel-cache dist",
-    "build": "parcel build"
+    "build": "parcel build src/index.html --dist-dir build"
   },
   "engines": {
     "node": "18.x"

@@ -10,7 +10,7 @@ export function Admin() {
 
   const dosearch = async () => {
     try {
-      const address = "REACT_APP_API_URL/api/users/details";
+      const address = `${process.env.REACT_APP_API_URL}/api/users/details`;
       const response = await fetch(address);
       const data = await response.json();
       setUsers(data);

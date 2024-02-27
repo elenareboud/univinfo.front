@@ -13,7 +13,7 @@ export function ExchangeDetails() {
     const doSearch = async () => {
         try {
             setexchangeData([]);
-            const address = "REACT_APP_API_URL/api/exchanges/details/" + params.contactid
+            const address = "${process.env.REACT_APP_API_URL}/api/exchanges/details/" + params.contactid
             const response = await fetch(address);
             const data = await response.json();
             setexchangeData(data);

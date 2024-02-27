@@ -15,7 +15,7 @@ export function TiersDetails() {
     const doSearch = async () => {
         try {
             setTiersData([]);
-            const adresse = "REACT_APP_API_URL/api/tier/details/" + params.id;
+            const adresse = "${process.env.REACT_APP_API_URL}/api/tier/details/" + params.id;
             const response = await fetch(adresse);
             const data = await response.json();
             setTiersData(data);

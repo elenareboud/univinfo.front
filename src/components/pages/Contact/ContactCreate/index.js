@@ -55,7 +55,7 @@ export function ContactCreate() {
         };
 
         try {
-            const response = await fetch('REACT_APP_API_URL/api/contact/create', {
+            const response = await fetch('${process.env.REACT_APP_API_URL}/api/contact/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

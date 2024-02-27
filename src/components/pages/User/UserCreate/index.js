@@ -22,7 +22,7 @@ export function UserCreate() {
     const doSearch = async () => {
         try {
             setGroupeData([]);
-            const address = "REACT_APP_API_URL/api/group/" 
+            const address = "${process.env.REACT_APP_API_URL}/api/group/" 
             const response = await fetch(address);
             const data = await response.json();
             setGroupeData(data);
@@ -58,7 +58,7 @@ export function UserCreate() {
 
 
         try {
-            const response = await fetch('REACT_APP_API_URL/api/user/create', {
+            const response = await fetch('${process.env.REACT_APP_API_URL}/api/user/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

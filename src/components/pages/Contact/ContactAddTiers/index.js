@@ -20,7 +20,7 @@ export function ContactAddTiers() {
     const doSearch = async () => {
         try {
             setTierData([]);
-            const address = "REACT_APP_API_URL/api/tiers/"
+            const address = "${process.env.REACT_APP_API_URL}/api/tiers/"
             const response = await fetch(address);
             const data = await response.json();
             setTierData(data);
@@ -57,7 +57,7 @@ export function ContactAddTiers() {
         console.log(newObject);
 
         try {
-            const response = await fetch('REACT_APP_API_URL/api/bind/create', {
+            const response = await fetch('${process.env.REACT_APP_API_URL}/api/bind/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ export function Profil() {
     const doSearchForUser = async () => {
         try {
             setuserData([]);
-            const address = "REACT_APP_API_URL/api/user/" + userName.user.id
+            const address = "/api/user/" + userName.user.id
             const response = await fetch(address);
             const data = await response.json();
             setuserData(data);
