@@ -15,7 +15,7 @@ export function TiersDetails() {
     const doSearch = async () => {
         try {
             setTiersData([]);
-            const adresse = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/tier/details/" + params.id;
+            const adresse = "REACT_APP_API_URL/api/tier/details/" + params.id;
             const response = await fetch(adresse);
             const data = await response.json();
             setTiersData(data);

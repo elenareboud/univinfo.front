@@ -22,7 +22,7 @@ export function ExchangeCreate() {
     const doSearch = async () => {
         try {
             setexchangeData([]);
-            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/" + params.contactid
+            const address = "REACT_APP_API_URL/api/contact/" + params.contactid
             const response = await fetch(address);
             const data = await response.json();
             setexchangeData(data);
@@ -59,7 +59,7 @@ export function ExchangeCreate() {
         console.log(newObject);
 
         try {
-            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/exchange/create', {
+            const response = await fetch('REACT_APP_API_URL/api/exchange/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

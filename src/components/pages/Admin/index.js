@@ -10,7 +10,7 @@ export function Admin() {
 
   const dosearch = async () => {
     try {
-      const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/users/details";
+      const address = "REACT_APP_API_URL/api/users/details";
       const response = await fetch(address);
       const data = await response.json();
       setUsers(data);

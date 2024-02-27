@@ -34,7 +34,7 @@ export function Connexion() {
         console.log(newObject);
 
         try {
-            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/login', {
+            const response = await fetch('REACT_APP_API_URL/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

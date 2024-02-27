@@ -14,7 +14,7 @@ export function ContactDetails() {
     const doSearch = async () => {
         try {
             setcontactData([]);
-            const adresse = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/details/" + params.id
+            const adresse = "REACT_APP_API_URL/api/contact/details/" + params.id
             const response = await fetch(adresse);
             const data = await response.json();
             setcontactData(data);

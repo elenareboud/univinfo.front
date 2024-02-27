@@ -15,7 +15,7 @@ export function ContactUpdate() {
     const doSearch = async () => {
         try {
             setContactData({});
-            const adresse = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/details/" + params.contactId;
+            const adresse = "REACT_APP_API_URL/api/contact/details/" + params.contactId;
             const response = await fetch(adresse);
             const data = await response.json();
             setContactData(data);
@@ -81,7 +81,7 @@ export function ContactUpdate() {
         
 
         try {
-            const response = await fetch (`https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/update/`+ params.contactId, {
+            const response = await fetch (`REACT_APP_API_URL/api/contact/update/`+ params.contactId, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export function ContactUpdate() {
 
     const doDelete = async () => {
         try {
-            await fetch(`https://univ-back-fa6cebfcadb3.herokuapp.com/api/contact/delete/` + params.contactId, {method:'DELETE'});
+            await fetch(`REACT_APP_API_URL/api/contact/delete/` + params.contactId, {method:'DELETE'});
             alert('Contact a été supprimé');
             }
         catch (error) {

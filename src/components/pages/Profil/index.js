@@ -7,7 +7,7 @@ export function Profil() {
     const doSearchForUser = async () => {
         try {
             setuserData([]);
-            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/user/" + userName.user.id
+            const address = "REACT_APP_API_URL/api/user/" + userName.user.id
             const response = await fetch(address);
             const data = await response.json();
             setuserData(data);

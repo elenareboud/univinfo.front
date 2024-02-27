@@ -18,7 +18,7 @@ export function TiersAddCampaigns() {
     const doSearch = async () => {
         try {
             setCampaignData([]);
-            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/campaigns/"
+            const address = "REACT_APP_API_URL/api/campaigns/"
             const response = await fetch(address);
             const data = await response.json();
             setCampaignData(data);
@@ -54,7 +54,7 @@ export function TiersAddCampaigns() {
         };
         
         try {
-            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/tierhascampaign/', {
+            const response = await fetch('REACT_APP_API_URL/api/tierhascampaign/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

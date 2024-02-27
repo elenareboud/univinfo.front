@@ -20,7 +20,7 @@ export function TiersAddContact() {
     const doSearch = async () => {
         try {
             setContactData([]);
-            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/contacts/all"
+            const address = "REACT_APP_API_URL/api/contacts/all"
             const response = await fetch(address);
             const data = await response.json();
             setContactData(data);
@@ -57,7 +57,7 @@ export function TiersAddContact() {
         console.log(newObject);
 
         try {
-            const response = await fetch('https://univ-back-fa6cebfcadb3.herokuapp.com/api/bind/create', {
+            const response = await fetch('REACT_APP_API_URL/api/bind/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

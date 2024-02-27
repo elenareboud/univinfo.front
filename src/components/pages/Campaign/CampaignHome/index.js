@@ -22,7 +22,7 @@ export function CampaignHome() {
         setSearchResult([]);
 
         try {
-            const address ="https://univ-back-fa6cebfcadb3.herokuapp.com/api/campaign/" + searchValue;
+            const address ="REACT_APP_API_URL/api/campaign/" + searchValue;
             const response = await fetch(address);
             const data = await response.json();
             setSearchResult(data);

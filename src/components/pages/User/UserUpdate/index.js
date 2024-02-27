@@ -14,7 +14,7 @@ export function UserUpdate() {
     const doSearchForGroup = async () => {
         try {
             setGroupeData([]);
-            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/group/"
+            const address = "REACT_APP_API_URL/api/group/"
             const response = await fetch(address);
             const data = await response.json();
             setGroupeData(data);
@@ -28,7 +28,7 @@ export function UserUpdate() {
     const doSearchForUser = async () => {
         try {
             setuserData([]);
-            const address = "https://univ-back-fa6cebfcadb3.herokuapp.com/api/user/" + params.userid
+            const address = "REACT_APP_API_URL/api/user/" + params.userid
             const response = await fetch(address);
             const data = await response.json();
             setuserData(data);
@@ -76,7 +76,7 @@ export function UserUpdate() {
 
 
         try {
-            const response = await fetch("https://univ-back-fa6cebfcadb3.herokuapp.com/api/user/update/" + params.userid, {
+            const response = await fetch("REACT_APP_API_URL/api/user/update/" + params.userid, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
